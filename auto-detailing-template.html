@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>APEX Auto Detailing — Showroom Shine, Every Time</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0a0c11; --bg-2:#0f131a; --bg-3:#141a24; --panel:#11161f;
+  --text:#f4f7fb; --muted:#9aa6b4; --dim:#69737f;
+  --accent:#22d3ee; --accent-2:#3b82f6;
+  --accent-grad:linear-gradient(135deg,#67e8f9 0%,#22d3ee 42%,#3b82f6 100%);
+  --chrome:linear-gradient(180deg,#eef2f6,#aab4c2);
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.05);
+  --line-accent:rgba(34,211,238,.28);
+  --glow:rgba(34,211,238,.16);
+  --disp:'Saira Condensed',sans-serif; --body:'Barlow',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer;touch-action:manipulation}
+svg{display:block}
+::selection{background:var(--accent);color:#04222a}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(34,211,238,.3);border:3px solid var(--bg)}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 26px}
+.disp{font-family:var(--disp);text-transform:uppercase;letter-spacing:.01em;line-height:.98}
+.label{display:inline-flex;align-items:center;gap:11px;font-family:var(--disp);font-size:.92rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent)}
+.label::before{content:"";width:28px;height:2px;background:var(--accent-grad)}
+.label.center{justify-content:center}
+.accent-text{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.icon svg{stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+
+.btn{display:inline-flex;align-items:center;gap:11px;font-family:var(--disp);font-size:1rem;letter-spacing:.12em;text-transform:uppercase;padding:15px 30px;border-radius:3px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,color .3s,border-color .3s}
+.btn.accent{background:var(--accent-grad);color:#04222a;font-weight:600;box-shadow:0 12px 34px rgba(34,211,238,.25)}
+.btn.accent:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(34,211,238,.4)}
+.btn.ghost{border:1px solid var(--line);color:var(--text)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s var(--ease)}
+.btn.accent:hover svg{transform:translateX(4px)}
+
+/* announce */
+.announce{background:var(--accent-grad);color:#04222a;text-align:center;min-height:36px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ann{font-family:var(--disp);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding:8px 16px}
+@keyframes annFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* top util */
+.top-util{background:var(--bg);border-bottom:1px solid var(--line-2)}
+.top-util .wrap{display:flex;align-items:center;justify-content:space-between;height:40px;font-size:.74rem;letter-spacing:.1em;color:var(--muted)}
+.top-util a{display:inline-flex;align-items:center;gap:7px}.top-util a:hover{color:var(--accent)}
+.top-util svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+.tu-right{display:flex;gap:24px}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:200;background:rgba(10,12,17,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.header-main{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 0;transition:padding .3s var(--ease)}
+.site-header.scrolled .header-main{padding:10px 0}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .mark{width:42px;height:42px;border-radius:6px;background:var(--accent-grad);display:grid;place-items:center;color:#04222a;flex:none}
+.brand .mark svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2.4}
+.brand .bn{font-family:var(--disp);font-weight:700;font-size:1.5rem;letter-spacing:.06em;line-height:1}
+.brand .bn small{display:block;font-size:.5rem;letter-spacing:.34em;color:var(--accent);font-weight:600}
+.nav{display:flex;align-items:center;gap:4px}
+.nav-item{position:relative}
+.nav-top{display:flex;align-items:center;gap:5px;padding:10px 14px;font-family:var(--disp);font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text);transition:color .25s;cursor:pointer}
+.nav-top .caret{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.4;transition:transform .3s var(--ease)}
+.nav-item:hover .nav-top{color:var(--accent)}
+.nav-item:hover .nav-top .caret{transform:rotate(180deg)}
+.dropdown{position:absolute;top:100%;left:0;min-width:230px;background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--accent);box-shadow:0 24px 50px rgba(0,0,0,.55);padding:12px 0;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .28s var(--ease),transform .28s var(--ease),visibility .28s;z-index:60}
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{display:block;font-size:.92rem;color:var(--muted);padding:9px 22px;transition:color .2s,background .2s,padding-left .2s}
+.dropdown a:hover{color:var(--accent);background:rgba(34,211,238,.07);padding-left:27px}
+.header-cta{display:flex;align-items:center;gap:16px}
+.phone-link{display:flex;align-items:center;gap:8px;font-family:var(--disp);font-size:1.05rem;letter-spacing:.06em;color:var(--text);transition:color .25s}
+.phone-link:hover{color:var(--accent)}
+.phone-link svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2}
+.hamburger{display:none;width:44px;height:44px;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px}
+.hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px}
+
+/* hero */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;
+  background:radial-gradient(80% 90% at 80% 20%,rgba(34,211,238,.10),transparent 55%),radial-gradient(60% 80% at 5% 100%,rgba(59,130,246,.10),transparent 55%),linear-gradient(180deg,#0a0c11,#0c0f16 60%,#0a0c11)}
+.hero-art{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero-art .glow{position:absolute;top:14%;right:6%;width:60vw;height:60vw;max-width:760px;max-height:760px;background:radial-gradient(circle,var(--glow),transparent 65%)}
+.car-bg{position:absolute;bottom:9%;right:-2%;width:min(64vw,900px);color:var(--accent);opacity:.16;filter:drop-shadow(0 0 40px rgba(34,211,238,.35))}
+.car-bg svg{width:100%;height:auto;stroke-width:2.2}
+.hero-art .road{position:absolute;left:0;right:0;bottom:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,211,238,.4),transparent)}
+.hero-inner{position:relative;z-index:2;max-width:720px;padding:110px 0}
+.hero .label{margin-bottom:24px}
+.hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(3.2rem,9vw,7rem);line-height:.92;letter-spacing:.005em}
+.hero h1 .accent-text{display:inline-block}
+.hero-sub{max-width:500px;margin:24px 0 0;color:var(--muted);font-size:1.1rem}
+.hero-cta{display:flex;gap:15px;margin-top:38px;flex-wrap:wrap}
+.hero-trust{display:flex;align-items:center;gap:13px;margin-top:42px;color:var(--muted);font-size:.88rem;flex-wrap:wrap}
+.stars{display:flex;gap:3px;color:var(--accent)}.stars svg{width:16px;height:16px;fill:currentColor;stroke:none}
+.scroll-cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--dim)}
+.scroll-cue .m{font-family:var(--disp);font-size:.7rem;letter-spacing:.24em}
+.scroll-cue .bar{width:1px;height:40px;background:linear-gradient(var(--accent),transparent);overflow:hidden;position:relative}
+.scroll-cue .bar::after{content:"";position:absolute;top:-50%;left:0;width:100%;height:50%;background:var(--accent);animation:drop 2s var(--ease) infinite}
+@keyframes drop{0%{top:-50%}60%,100%{top:120%}}
+
+/* trust strip */
+.trust{border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);background:var(--bg-2)}
+.trust .wrap{display:flex;align-items:center;justify-content:center;gap:clamp(20px,5vw,60px);padding:20px 0;flex-wrap:wrap;text-align:center}
+.trust .ti{display:flex;align-items:center;gap:10px;font-size:.86rem;letter-spacing:.04em;color:var(--muted)}
+.trust .ti svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2}
+.trust .ti b{color:var(--text);font-weight:600}
+
+/* sections */
+.sec{padding:clamp(70px,11vw,130px) 0;position:relative}
+.sec-head{margin-bottom:58px}
+.sec-head.center{text-align:center}
+.sec-head h2{font-family:var(--disp);font-weight:700;font-size:clamp(2.4rem,6vw,4.4rem);margin-top:14px;line-height:.98}
+.sec-head p{color:var(--muted);max-width:62ch;margin-top:14px}
+.sec-head.center p{margin-left:auto;margin-right:auto}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{border:1px solid var(--line);border-radius:8px;padding:36px 30px;background:var(--panel);transition:transform .4s var(--ease),border-color .3s,background .3s;position:relative;overflow:hidden}
+.svc::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(34,211,238,.08) 50%,transparent 60%);transform:translateX(-120%);transition:transform .8s var(--ease)}
+.svc:hover{transform:translateY(-6px);border-color:var(--line-accent);background:var(--bg-3)}
+.svc:hover::after{transform:translateX(120%)}
+.svc .si{width:54px;height:54px;border-radius:10px;background:rgba(34,211,238,.1);border:1px solid var(--line-accent);display:grid;place-items:center;color:var(--accent);margin-bottom:22px}
+.svc .si svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:2.4}
+.svc h3{font-family:var(--disp);font-weight:600;font-size:1.5rem;margin-bottom:10px}
+.svc p{color:var(--muted);font-size:.95rem}
+
+/* how it works */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{text-align:center;padding:0 14px;position:relative}
+.step .n{font-family:var(--disp);font-weight:700;font-size:3.4rem;background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.step h4{font-family:var(--disp);font-weight:600;font-size:1.5rem;margin:10px 0 8px}
+.step p{color:var(--muted);font-size:.94rem;max-width:30ch;margin:0 auto}
+
+/* packages */
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.pkg{border:1px solid var(--line);border-radius:10px;padding:38px 32px;background:var(--panel);display:flex;flex-direction:column;transition:transform .4s var(--ease),border-color .3s}
+.pkg:hover{transform:translateY(-5px);border-color:var(--line-accent)}
+.pkg.featured{background:linear-gradient(180deg,#10202b,#0c1117);border-color:var(--accent);box-shadow:0 24px 60px rgba(0,0,0,.45);position:relative}
+.pkg.featured::before{content:"Most popular";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent-grad);color:#04222a;font-family:var(--disp);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:5px 16px;border-radius:30px}
+.pkg .pn{font-family:var(--disp);font-weight:600;font-size:1.9rem}
+.pkg .pd{color:var(--muted);font-size:.86rem;margin-top:4px}
+.pkg .pp{font-family:var(--disp);font-weight:700;font-size:3.2rem;margin:18px 0 2px;line-height:1}
+.pkg .pp small{font-size:1rem;color:var(--muted);font-weight:500}
+.pkg ul{list-style:none;margin:24px 0 30px;display:flex;flex-direction:column;gap:12px}
+.pkg li{display:flex;gap:11px;font-size:.94rem;color:var(--muted)}
+.pkg li svg{width:17px;height:17px;flex:none;stroke:var(--accent);fill:none;stroke-width:2.4;margin-top:3px}
+.pkg .btn{margin-top:auto;justify-content:center}
+
+/* before/after */
+.ba-wrap{max-width:980px;margin:0 auto}
+.ba{position:relative;aspect-ratio:16/9;border:1px solid var(--line);border-radius:10px;overflow:hidden;--pos:50%;touch-action:none;cursor:ew-resize;user-select:none}
+.ba-layer{position:absolute;inset:0;display:grid;place-items:center}
+.ba-after{background:radial-gradient(120% 120% at 70% 20%,#16384a,#0a1016)}
+.ba-before{background:linear-gradient(160deg,#23262b,#15171b);clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.ba-layer .icon{width:54%;filter:drop-shadow(0 10px 30px rgba(0,0,0,.4))}
+.ba-after .icon{color:var(--accent);opacity:.9}
+.ba-before .icon{color:#5b6470;opacity:.7}
+.ba-label{position:absolute;top:14px;font-family:var(--disp);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;border-radius:3px;background:rgba(0,0,0,.45);border:1px solid var(--line)}
+.ba-before .ba-label{left:14px;color:#aeb6c0}
+.ba-after .ba-label{right:14px;color:var(--accent);border-color:var(--line-accent)}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--accent-grad);transform:translateX(-50%);pointer-events:none}
+.ba-knob{position:absolute;top:50%;left:var(--pos);transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;pointer-events:none;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.ba-knob svg{width:22px;height:22px;stroke:#04222a;fill:none;stroke-width:2.4}
+
+/* why */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.why{text-align:center;padding:10px}
+.why .wi{width:56px;height:56px;margin:0 auto 16px;color:var(--accent)}
+.why .wi svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:2.2}
+.why h4{font-family:var(--disp);font-weight:600;font-size:1.4rem;margin-bottom:8px}
+.why p{color:var(--muted);font-size:.92rem;max-width:28ch;margin:0 auto}
+
+/* gallery */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gal{position:relative;aspect-ratio:4/3;border:1px solid var(--line);border-radius:8px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(160deg,#141a24,#0b0e13)}
+.gal:nth-child(3n-1){background:linear-gradient(160deg,#13202a,#0a0f15)}
+.gal .icon{width:46%;color:var(--accent);opacity:.4;transition:transform .5s var(--ease),opacity .3s}
+.gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gal:hover .icon{transform:scale(1.1);opacity:.6}
+.gal span{position:absolute;left:0;right:0;bottom:0;padding:16px;font-family:var(--disp);font-size:.86rem;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(transparent,rgba(7,9,12,.85))}
+
+/* stats */
+.stats{background:linear-gradient(180deg,#0a0c11,#0d1219,#0a0c11)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.stat .num{font-family:var(--disp);font-weight:700;font-size:clamp(2.8rem,6vw,4.6rem);line-height:1;background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .t{font-family:var(--disp);font-size:.92rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+
+/* reviews */
+.reviews{background:var(--bg-2)}
+.car-nav{display:flex;gap:10px}
+.car-nav button{width:48px;height:48px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--text);transition:background .3s,color .3s,border-color .3s}
+.car-nav button:hover{background:var(--accent);color:#04222a;border-color:var(--accent)}
+.car-nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.carousel>*{scroll-snap-align:start;flex:0 0 auto}
+.review{width:clamp(280px,33vw,370px);border:1px solid var(--line);border-radius:8px;padding:28px;background:var(--panel);display:flex;flex-direction:column;gap:14px}
+.review .stars svg{width:16px;height:16px}
+.review p{color:var(--text);font-size:1rem;flex:1;font-weight:300}
+.review .who{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line-2);padding-top:14px}
+.review .who .n{font-family:var(--disp);font-size:1.05rem;letter-spacing:.04em}
+.review .who .car{font-size:.74rem;letter-spacing:.06em;color:var(--dim);text-transform:uppercase}
+
+/* cta banner */
+.cta{position:relative;overflow:hidden;background:linear-gradient(180deg,#0d1219,#0a0c11)}
+.cta-box{position:relative;border:1px solid var(--line-accent);border-radius:14px;overflow:hidden;background:radial-gradient(100% 140% at 80% 0%,rgba(34,211,238,.14),transparent 60%),var(--panel);padding:clamp(40px,7vw,80px);text-align:center}
+.cta-box h2{font-family:var(--disp);font-weight:700;font-size:clamp(2.4rem,6vw,4.2rem);line-height:.98}
+.cta-box p{color:var(--muted);max-width:460px;margin:18px auto 32px;font-size:1.06rem}
+.cta-box .row{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+
+/* footer */
+footer{background:#07090c;border-top:1px solid var(--line)}
+.foot-main{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;gap:40px;padding:64px 0 44px}
+.fbrand .brand{margin-bottom:16px}
+.fbrand p{color:var(--muted);font-size:.92rem;max-width:34ch;margin-bottom:18px}
+.social{display:flex;gap:12px}
+.social a{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:background .3s,color .3s,border-color .3s}
+.social a:hover{background:var(--accent);color:#04222a;border-color:var(--accent)}
+.social svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.6}
+.fcol h6{font-family:var(--disp);font-size:.86rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.fcol a,.fcol p{display:block;color:var(--muted);font-size:.92rem;padding:5px 0;line-height:1.6}
+.fcol a:hover{color:var(--text)}
+.fcol .ic{display:flex;gap:10px;align-items:flex-start;padding:6px 0}
+.fcol .ic svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2;flex:none;margin-top:4px}
+.foot-bot{border-top:1px solid var(--line-2);padding:22px 0;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--dim);font-size:.74rem;letter-spacing:.06em}
+
+/* overlays */
+.scrim{position:fixed;inset:0;background:rgba(3,4,6,.7);backdrop-filter:blur(3px);z-index:300;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.scrim.show{opacity:1;visibility:visible}
+.modal{position:fixed;inset:0;z-index:340;display:grid;place-items:center;padding:24px;background:rgba(3,4,6,.75);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;overflow-y:auto}
+.modal.open{opacity:1;visibility:visible}
+.modal-box{width:100%;max-width:500px;background:var(--bg-2);border:1px solid var(--line);border-top:2px solid var(--accent);border-radius:10px;padding:36px;position:relative;transform:translateY(16px);transition:transform .4s var(--ease);margin:auto}
+.modal.open .modal-box{transform:none}
+.modal-box h3{font-family:var(--disp);font-weight:700;font-size:2.1rem;margin-bottom:4px}
+.modal-box .sub{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+.modal-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--text);transition:background .3s,color .3s}
+.modal-close:hover{background:var(--accent);color:#04222a}
+.modal-close svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.8}
+.f-row{display:flex;gap:12px}
+.field{margin-bottom:12px;flex:1}
+.field label{display:block;font-family:var(--disp);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--text);font-family:var(--body);font-size:16px;padding:12px 14px;outline:none;transition:border-color .25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}
+.field textarea{resize:vertical;min-height:70px}
+.field select{appearance:none;-webkit-appearance:none}
+.modal .btn{width:100%;justify-content:center;margin-top:6px}
+.thankyou{text-align:center;padding:18px 0}
+.thankyou .tick{width:58px;height:58px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;margin:0 auto 18px;color:var(--accent)}
+.thankyou .tick svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:2.4}
+.thankyou h3{font-family:var(--disp);font-size:2rem;margin-bottom:8px}
+.thankyou p{color:var(--muted)}
+
+.m-menu{position:fixed;top:0;left:0;height:100%;width:min(360px,88%);z-index:320;background:var(--bg-2);transform:translateX(-100%);transition:transform .4s var(--ease);display:flex;flex-direction:column;border-right:1px solid var(--line)}
+.m-menu.open{transform:translateX(0)}
+.m-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}
+.m-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.m-list a{display:block;padding:16px 22px;font-family:var(--disp);font-size:1.05rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text);border-bottom:1px solid var(--line-2)}
+.m-list a:hover{color:var(--accent)}
+.m-foot{padding:18px 22px;border-top:1px solid var(--line)}
+.m-foot .btn{width:100%;justify-content:center}
+
+/* reveal */
+.reveal-on .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
+
+/* responsive */
+@media (max-width:1040px){
+  .nav,.phone-link,.tu-left{display:none}
+  .hamburger{display:flex}
+  .svc-grid,.steps,.gal-grid{grid-template-columns:repeat(2,1fr)}
+  .pkg-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+  .why-grid{grid-template-columns:repeat(2,1fr);gap:34px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
+  .foot-main{grid-template-columns:1fr 1fr}.fbrand{grid-column:1/-1}
+}
+@media (max-width:560px){
+  .hero-inner{padding:80px 0}
+  .svc-grid,.steps,.gal-grid,.why-grid{grid-template-columns:1fr}
+  .why-grid{gap:30px}
+  .f-row{flex-direction:column;gap:0}
+  .foot-main{grid-template-columns:1fr}
+  input,select,textarea{font-size:16px}
+}
+@media (hover:none),(pointer:coarse){ .gal .icon{opacity:.55} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important}}
+</style>
+</head>
+
+<body id="top">
+
+<div class="announce"><div class="ann" id="ann"></div></div>
+
+<!-- top util -->
+<div class="top-util">
+  <div class="wrap">
+    <a class="tu-left" href="tel:+18505550199"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a14 14 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>(850) 555-0199</a>
+    <div class="tu-right">
+      <a href="#contact"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Mon–Sat · 8am–6pm</a>
+      <a href="#contact"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Mobile &amp; in-shop</a>
+    </div>
+  </div>
+</div>
+
+<!-- header -->
+<header class="site-header" id="header">
+  <div class="wrap header-main">
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <!-- ▼ business name ▼ -->
+    <a class="brand" href="#top">
+      <span class="mark"><svg viewBox="0 0 64 64"><path d="M8 40 C8 33 14 31 22 31 L26 31 L36 20 C40 16 45 15 50 15 L52 15 C58 15 62 18 64 24"/></svg></span>
+      <span class="bn">APEX<small>Auto Detailing</small></span>
+    </a>
+    <nav class="nav" id="nav"></nav>
+    <div class="header-cta">
+      <a class="phone-link" href="tel:+18505550199"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a14 14 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>(850) 555-0199</a>
+      <button class="btn accent" id="bookBtn">Book Now</button>
+    </div>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="hero-art">
+    <div class="glow"></div>
+    <div class="car-bg icon" id="heroCar"></div>
+    <div class="road"></div>
+  </div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="label">Premium Auto Detailing</span>
+      <h1 class="disp">Showroom shine,<br><span class="accent-text">every single time.</span></h1>
+      <p class="hero-sub">Hand-finished exterior &amp; interior detailing, ceramic coatings, and paint correction — for drivers who refuse to settle for "good enough."</p>
+      <div class="hero-cta">
+        <button class="btn accent" id="bookBtn2">Book your detail <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <a href="#packages" class="btn ghost">View packages &amp; pricing</a>
+      </div>
+      <div class="hero-trust"><span class="stars" id="heroStars"></span><span>4.9 rating · 8,000+ vehicles detailed · Fully insured</span></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="m">Scroll</span><span class="bar"></span></div>
+</section>
+
+<!-- trust strip -->
+<div class="trust">
+  <div class="wrap">
+    <div class="ti"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5Z"/></svg><b>4.9/5</b> from 900+ reviews</div>
+    <div class="ti"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/></svg>Mobile service — <b>we come to you</b></div>
+    <div class="ti"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-4 8-8 9-4-1-8-4-8-9V7Z"/></svg><b>Fully insured</b> &amp; certified</div>
+    <div class="ti"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><b>100%</b> satisfaction promise</div>
+  </div>
+</div>
+
+<!-- services -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="label center">What we do</span><h2 class="disp">Detailing services</h2><p>From a quick refresh to a full nut-and-bolt transformation — every service is done by hand with pro-grade, paint-safe products.</p></div>
+    <div class="svc-grid reveal" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- how it works -->
+<section class="sec" id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="label center">Easy as 1-2-3</span><h2 class="disp">How it works</h2></div>
+    <div class="steps reveal" id="steps"></div>
+  </div>
+</section>
+
+<!-- packages -->
+<section class="sec" id="packages">
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="label center">Pricing</span><h2 class="disp">Detail packages</h2><p>Transparent, upfront pricing. Final quote depends on vehicle size &amp; condition — large trucks &amp; SUVs may vary.</p></div>
+    <div class="pkg-grid reveal" id="pkgGrid"></div>
+  </div>
+</section>
+
+<!-- before / after -->
+<section class="sec" id="results" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="label center">The difference</span><h2 class="disp">Before &amp; after</h2><p>Drag the slider to see the transformation. Swap in your own before/after photos in the code.</p></div>
+    <div class="ba-wrap reveal">
+      <div class="ba" id="ba">
+        <!-- ▼ drop real photos here: replace the icon spans with <img src="..."> ▼ -->
+        <div class="ba-layer ba-after"><span class="icon" id="baAfter"></span><span class="ba-label">After</span></div>
+        <div class="ba-layer ba-before"><span class="icon" id="baBefore"></span><span class="ba-label">Before</span></div>
+        <div class="ba-handle"></div>
+        <div class="ba-knob"><svg viewBox="0 0 24 24"><path d="M9 7l-4 5 4 5M15 7l4 5-4 5"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- why -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="label center">Why APEX</span><h2 class="disp">Detailers you can trust</h2></div>
+    <div class="why-grid reveal" id="whyGrid"></div>
+  </div>
+</section>
+
+<!-- gallery -->
+<section class="sec" id="gallery" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="label center">Our work</span><h2 class="disp">Recent details</h2></div>
+    <div class="gal-grid reveal" id="galGrid"></div>
+  </div>
+</section>
+
+<!-- stats -->
+<section class="sec stats">
+  <div class="wrap"><div class="stat-grid reveal" id="statGrid"></div></div>
+</section>
+
+<!-- reviews -->
+<section class="sec reviews" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div><span class="label">Happy drivers</span><h2 class="disp" style="margin-top:12px">What customers say</h2></div>
+      <div class="car-nav">
+        <button onclick="scrollCar('revCar',-1)" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button onclick="scrollCar('revCar',1)" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="carousel" id="revCar"></div>
+  </div>
+</section>
+
+<!-- cta banner -->
+<section class="sec cta">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <span class="label center" style="margin-bottom:18px">Ready when you are</span>
+      <h2 class="disp">Let's make it <span class="accent-text">shine.</span></h2>
+      <p>Book online in 60 seconds or call us — mobile and in-shop appointments available across the area.</p>
+      <div class="row">
+        <button class="btn accent" id="bookBtn3">Book your detail <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <a class="btn ghost" href="tel:+18505550199">Call (850) 555-0199</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-main">
+      <div class="fbrand">
+        <a class="brand" href="#top"><span class="mark"><svg viewBox="0 0 64 64"><path d="M8 40 C8 33 14 31 22 31 L26 31 L36 20 C40 16 45 15 50 15 L52 15 C58 15 62 18 64 24"/></svg></span><span class="bn">APEX<small>Auto Detailing</small></span></a>
+        <p>Premium hand detailing, ceramic coatings &amp; paint correction. Mobile &amp; in-shop.</p>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 8h-2a2 2 0 0 0-2 2v2H9v3h2v6h3v-6h2.5l.5-3H14v-1.5c0-.5.3-.5.7-.5H17V8Z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M15 5c.5 2 2 3.2 4 3.4v2.7c-1.5 0-2.9-.5-4-1.3v5.7a5 5 0 1 1-5-5c.3 0 .7 0 1 .1v2.8a2.2 2.2 0 1 0 1.5 2.1V5H15Z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 9l4 3-4 3Z"/></svg></a>
+        </div>
+      </div>
+      <div class="fcol"><h6>Services</h6><a href="#services">Exterior Detail</a><a href="#services">Interior Detail</a><a href="#services">Ceramic Coating</a><a href="#services">Paint Correction</a><a href="#services">Wash &amp; Wax</a></div>
+      <div class="fcol"><h6>Company</h6><a href="#packages">Packages</a><a href="#gallery">Gallery</a><a href="#reviews">Reviews</a><a href="#why">Why APEX</a><a href="#contact">Contact</a></div>
+      <div class="fcol"><h6>Get in touch</h6>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a14 14 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg><a href="tel:+18505550199">(850) 555-0199</a></div>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:hello@apexdetailing.com">hello@apexdetailing.com</a></div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><p>1200 Front Beach Rd<br>Panama City Beach, FL 32413</p></div>
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p>Mon–Sat 8am–6pm · Sun closed</p></div>
+      </div>
+    </div>
+    <div class="foot-bot"><span>© MMXXVI APEX Auto Detailing. All rights reserved.</span><span>Privacy · Terms</span></div>
+  </div>
+</footer>
+
+<!-- overlays -->
+<div class="scrim" id="scrim"></div>
+
+<div class="modal" id="bookModal">
+  <div class="modal-box">
+    <button class="modal-close" id="bookClose" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div id="bookForm">
+      <span class="label">Book online</span>
+      <h3 class="disp" style="margin-top:10px">Request your detail</h3>
+      <p class="sub">Fill this out and we'll confirm your appointment within a few hours.</p>
+      <div class="f-row">
+        <div class="field"><label>Name</label><input type="text" id="bName" placeholder="Your name"></div>
+        <div class="field"><label>Phone</label><input type="tel" id="bPhone" placeholder="(555) 000-0000"></div>
+      </div>
+      <div class="field"><label>Vehicle</label><input type="text" id="bVehicle" placeholder="Year, make &amp; model"></div>
+      <div class="f-row">
+        <div class="field"><label>Service</label><select id="bService"></select></div>
+        <div class="field"><label>Preferred date</label><input type="text" id="bDate" placeholder="e.g. Sat, Jun 14"></div>
+      </div>
+      <div class="field"><label>Notes</label><textarea id="bNotes" placeholder="Anything we should know? (optional)"></textarea></div>
+      <button class="btn accent" onclick="submitBook()">Request appointment <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="thankyou" id="bookThanks" style="display:none">
+      <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+      <h3 class="disp">You're booked in!</h3>
+      <p>Thanks — we've got your request and will text you shortly to confirm the details.</p>
+    </div>
+  </div>
+</div>
+
+<aside class="m-menu" id="mMenu" aria-label="Menu">
+  <div class="m-head"><a class="brand" href="#top"><span class="mark"><svg viewBox="0 0 64 64"><path d="M8 40 C8 33 14 31 22 31 L26 31 L36 20 C40 16 45 15 50 15 L52 15 C58 15 62 18 64 24"/></svg></span><span class="bn">APEX<small>Auto Detailing</small></span></a><button class="modal-close" id="mClose" style="position:static" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="m-list" id="mList"></div>
+  <div class="m-foot"><button class="btn accent" id="bookBtn4">Book Now</button></div>
+</aside>
+
+<script>
+/* ===== ICONS ===== */
+const CAR='<svg viewBox="0 0 240 100"><path d="M16 74 C16 62 28 60 40 60 L78 60 L104 38 C112 33 122 31 134 31 L158 31 C176 31 188 36 198 47 L214 60 L224 61 C234 62 236 68 236 74"/><path d="M104 39 L122 58 M157 31 L157 58"/><path d="M16 75 L61 75 M91 75 L173 75 M203 75 L236 75"/><circle cx="76" cy="78" r="15"/><circle cx="188" cy="78" r="15"/><circle cx="76" cy="78" r="5"/><circle cx="188" cy="78" r="5"/></svg>';
+const ICONS={
+  car:CAR,
+  seat:'<svg viewBox="0 0 64 64"><path d="M22 14 q0 -6 6 -6 h8 q6 0 6 6 v18 h-20 Z"/><path d="M16 34 h32 v4 q0 8 -8 8 h-16 q-8 0 -8 -8 Z"/><path d="M24 46 v8 M40 46 v8"/></svg>',
+  shield:'<svg viewBox="0 0 64 64"><path d="M32 8 L52 16 V32 C52 44 43 52 32 56 C21 52 12 44 12 32 V16 Z"/><path d="M24 32 l6 6 12 -12"/></svg>',
+  spray:'<svg viewBox="0 0 64 64"><path d="M26 24 h14 v26 a4 4 0 0 1 -4 4 h-6 a4 4 0 0 1 -4 -4 Z"/><path d="M26 24 v-6 h10 M36 18 h10"/><path d="M42 13 v3 M48 13 v3 M42 21 v3 M48 21 v3"/></svg>',
+  droplet:'<svg viewBox="0 0 64 64"><path d="M32 10 C32 10 46 28 46 40 a14 14 0 0 1 -28 0 C18 28 32 10 32 10 Z"/><path d="M26 40 a6 6 0 0 0 6 6"/></svg>',
+  headlight:'<svg viewBox="0 0 64 64"><path d="M18 20 h14 a14 14 0 0 1 0 28 h-14 Z"/><path d="M42 26 h9 M42 34 h11 M42 42 h9"/></svg>',
+  van:'<svg viewBox="0 0 64 64"><path d="M6 26 h30 v18 h-30 Z"/><path d="M36 30 h10 l8 8 v6 h-18 Z"/><circle cx="20" cy="48" r="5"/><circle cx="46" cy="48" r="5"/></svg>',
+  badge:'<svg viewBox="0 0 64 64"><circle cx="32" cy="25" r="15"/><path d="M24 37 l-3 19 11 -7 11 7 -3 -19"/><path d="M26 25 l4 4 8 -8"/></svg>',
+  guard:'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M22 33 l7 7 14 -16"/></svg>',
+  wheel:'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="8"/><path d="M32 10 V24 M32 40 V54 M10 32 H24 M40 32 H54"/></svg>'
+};
+const ic=n=>`<span class="icon">${ICONS[n]}</span>`;
+const star='<svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.8.7-5 4.6 1.4 6.7L12 17.8 5.9 21l1.4-6.7-5-4.6 6.8-.7Z"/></svg>';
+const stars5=Array(5).fill(star).join('');
+const check='<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>';
+document.getElementById('heroStars').innerHTML=stars5;
+document.getElementById('heroCar').innerHTML=CAR;
+document.getElementById('baAfter').innerHTML=CAR;
+document.getElementById('baBefore').innerHTML=CAR;
+
+/* ===== NAV ===== */
+const NAV=[
+  {label:'Services',href:'#services',menu:['Exterior Detail','Interior Detail','Ceramic Coating','Paint Correction','Wash & Wax','Headlight Restoration']},
+  {label:'Packages',href:'#packages'},
+  {label:'Results',href:'#results'},
+  {label:'Gallery',href:'#gallery'},
+  {label:'Reviews',href:'#reviews'},
+  {label:'Contact',href:'#contact'}
+];
+const caret='<svg class="caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+document.getElementById('nav').innerHTML=NAV.map(n=>{
+  if(!n.menu) return `<div class="nav-item"><a class="nav-top" href="${n.href}">${n.label}</a></div>`;
+  return `<div class="nav-item"><a class="nav-top" href="${n.href}">${n.label}${caret}</a><div class="dropdown">${n.menu.map(i=>`<a href="#services">${i}</a>`).join('')}</div></div>`;
+}).join('');
+document.getElementById('mList').innerHTML=NAV.map(n=>`<a href="${n.href}">${n.label}</a>`).join('');
+
+/* ===== SERVICES ===== */
+const SVCS=[
+  {i:'car',t:'Exterior Detail',d:'Hand wash, clay bar, wax & tire shine for a deep, lasting gloss that turns heads.'},
+  {i:'seat',t:'Interior Detail',d:'Vacuum, steam clean, leather conditioning & odor removal — like a brand-new cabin.'},
+  {i:'shield',t:'Ceramic Coating',d:'Multi-year paint protection with a brilliant, hydrophobic, easy-clean finish.'},
+  {i:'spray',t:'Paint Correction',d:'Remove swirls, scratches & oxidation to restore true showroom depth and clarity.'},
+  {i:'droplet',t:'Wash & Wax',d:'A thorough maintenance wash to keep your ride shining between full details.'},
+  {i:'headlight',t:'Headlight Restoration',d:'Cut through haze and yellowing for clearer, brighter, safer headlights.'}
+];
+document.getElementById('svcGrid').innerHTML=SVCS.map(s=>`<div class="svc"><div class="si">${ICONS[s.i]}</div><h3 class="disp">${s.t}</h3><p>${s.d}</p></div>`).join('');
+
+/* ===== STEPS ===== */
+const STEPS=[
+  {n:'01',t:'Book online',p:'Pick your package and a time that works — online in 60 seconds or by phone.'},
+  {n:'02',t:'We detail',p:'We come to you or you drop in. Our certified team gets to work, by hand.'},
+  {n:'03',t:'Drive away shining',p:'Hop back in to a flawless, protected finish — and that fresh-detail feeling.'}
+];
+document.getElementById('steps').innerHTML=STEPS.map(s=>`<div class="step"><div class="n disp">${s.n}</div><h4 class="disp">${s.t}</h4><p>${s.p}</p></div>`).join('');
+
+/* ===== PACKAGES ===== */
+const PKGS=[
+  {n:'Express Shine',d:'~45 minutes',price:49,feats:['Exterior hand wash','Wheels & tires cleaned','Spray wax & tire shine','Windows & mirrors','Quick interior wipe-down'],featured:false},
+  {n:'Full Detail',d:'~3 hours',price:149,feats:['Everything in Express','Full interior vacuum & steam','Clay bar & paint sealant','Leather / upholstery clean','Tire dressing & trim restore'],featured:true},
+  {n:'Ceramic Ultimate',d:'Full day',price:599,feats:['Everything in Full Detail','1-step paint correction','5-year ceramic coating','Interior fabric protection','Headlight restoration'],featured:false}
+];
+document.getElementById('pkgGrid').innerHTML=PKGS.map(p=>`
+  <div class="pkg${p.featured?' featured':''}">
+    <div class="pn disp">${p.n}</div><div class="pd">${p.d}</div>
+    <div class="pp disp"><small>from </small>$${p.price}</div>
+    <ul>${p.feats.map(f=>`<li>${check}<span>${f}</span></li>`).join('')}</ul>
+    <button class="btn ${p.featured?'accent':'ghost'}" data-book="${p.n}">Book this package</button>
+  </div>`).join('');
+
+/* ===== WHY ===== */
+const WHY=[
+  {i:'van',t:'Mobile service',p:'We come to your home or office, fully self-equipped with power & water.'},
+  {i:'spray',t:'Pro-grade products',p:'Premium, paint-safe products and professional equipment on every job.'},
+  {i:'badge',t:'Certified & insured',p:'Trained, fully insured detailers who are genuinely obsessed with the details.'},
+  {i:'guard',t:'Satisfaction promise',p:"Not thrilled with the result? We'll make it right — guaranteed."}
+];
+document.getElementById('whyGrid').innerHTML=WHY.map(w=>`<div class="why"><div class="wi">${ICONS[w.i]}</div><h4 class="disp">${w.t}</h4><p>${w.p}</p></div>`).join('');
+
+/* ===== GALLERY ===== */
+const GAL=[
+  {l:'Full exterior detail',img:''},{l:'Ceramic coating',img:''},{l:'Paint correction',img:''},
+  {l:'Interior deep clean',img:''},{l:'Wheel & trim restore',img:''},{l:'Headlight restoration',img:''}
+];
+document.getElementById('galGrid').innerHTML=GAL.map(g=>`<a class="gal" href="#results">${g.img?`<img src="${g.img}" alt="${g.l}" loading="lazy">`:ic('car')}<span>${g.l}</span></a>`).join('');
+
+/* ===== STATS ===== */
+const STATS=[{target:8000,suf:'+',label:'Cars detailed'},{target:12,suf:'+',label:'Years experience'},{target:4.9,dec:1,suf:'★',label:'Average rating'},{static:'100%',label:'Satisfaction'}];
+document.getElementById('statGrid').innerHTML=STATS.map(s=>{
+  if(s.static) return `<div class="stat"><div class="num">${s.static}</div><div class="t">${s.label}</div></div>`;
+  return `<div class="stat"><div class="num count" data-target="${s.target}" data-suf="${s.suf}" data-dec="${s.dec||0}">0${s.suf}</div><div class="t">${s.label}</div></div>`;
+}).join('');
+
+/* ===== REVIEWS ===== */
+const REVIEWS=[
+  {x:"My truck looks better than the day I bought it. The ceramic coating is unreal — water just rolls right off.",n:'Marcus T.',car:'F-150 Platinum'},
+  {x:"They came to my office and did a full interior detail. Spotless, smelled amazing, zero hassle. Booked monthly now.",n:'Priya S.',car:'Audi Q5'},
+  {x:"Paint correction took out years of swirl marks. The depth of the black paint is insane. Worth every dollar.",n:'Derek L.',car:'Camaro SS'},
+  {x:"On time, professional, and the results speak for themselves. My wife thought I bought a new car.",n:'Jon R.',car:'Tahoe'},
+  {x:"Best detailers in town, hands down. Friendly, meticulous, and fairly priced. Highly recommend.",n:'Alyssa M.',car:'Model 3'}
+];
+document.getElementById('revCar').innerHTML=REVIEWS.map(r=>`<div class="review"><span class="stars">${stars5}</span><p>"${r.x}"</p><div class="who"><span class="n">${r.n}</span><span class="car">${r.car}</span></div></div>`).join('');
+
+/* ===== BOOK SERVICE OPTIONS ===== */
+document.getElementById('bService').innerHTML=['Express Shine — from $49','Full Detail — from $149','Ceramic Ultimate — from $599','Ceramic Coating','Paint Correction','Interior Detail','Not sure — recommend for me'].map(o=>`<option>${o}</option>`).join('');
+
+/* ===== CAROUSEL ===== */
+function scrollCar(id,dir){const el=document.getElementById(id);const c=el.querySelector('*');const amt=(c?c.getBoundingClientRect().width:320)+20;el.scrollBy({left:dir*amt,behavior:'smooth'});}
+
+/* ===== BEFORE / AFTER SLIDER ===== */
+const ba=document.getElementById('ba');
+if(ba){
+  const setPos=x=>{const r=ba.getBoundingClientRect();let p=((x-r.left)/r.width)*100;p=Math.max(3,Math.min(97,p));ba.style.setProperty('--pos',p+'%');};
+  let drag=false;
+  ba.addEventListener('pointerdown',e=>{drag=true;setPos(e.clientX);try{ba.setPointerCapture(e.pointerId);}catch(_){}});
+  ba.addEventListener('pointermove',e=>{if(drag)setPos(e.clientX);});
+  window.addEventListener('pointerup',()=>drag=false);
+  ba.addEventListener('pointercancel',()=>drag=false);
+}
+
+/* ===== OVERLAYS ===== */
+const scrim=document.getElementById('scrim'),mMenu=document.getElementById('mMenu'),bookModal=document.getElementById('bookModal');
+function openM(){mMenu.classList.add('open');scrim.classList.add('show');}
+function closeM(){mMenu.classList.remove('open');scrim.classList.remove('show');}
+function openBook(svc){if(svc&&typeof svc==='string'){const sel=document.getElementById('bService');[...sel.options].forEach(o=>{if(o.textContent.startsWith(svc))sel.value=o.value;});}bookModal.classList.add('open');}
+function closeBook(){bookModal.classList.remove('open');}
+
+['bookBtn','bookBtn2','bookBtn3','bookBtn4'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',()=>{closeM();openBook();});});
+document.getElementById('hamburger').addEventListener('click',openM);
+document.getElementById('mClose').addEventListener('click',closeM);
+document.getElementById('bookClose').addEventListener('click',closeBook);
+bookModal.addEventListener('click',e=>{if(e.target===bookModal)closeBook();});
+scrim.addEventListener('click',closeM);
+document.getElementById('mList').querySelectorAll('a').forEach(a=>a.addEventListener('click',closeM));
+document.querySelectorAll('[data-book]').forEach(b=>b.addEventListener('click',()=>openBook(b.dataset.book)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();closeBook();}});
+document.addEventListener('click',e=>{const a=e.target.closest('a');if(a&&a.getAttribute('href')==='#')e.preventDefault();});
+
+function submitBook(){document.getElementById('bookForm').style.display='none';document.getElementById('bookThanks').style.display='block';}
+
+/* ===== ANNOUNCEMENT ===== */
+const MSGS=['Mobile detailing — we come to you','$25 off your first ceramic coating','Now booking weekends — reserve your spot'];
+const annEl=document.getElementById('ann');let ai=0;
+function rot(){annEl.textContent=MSGS[ai];annEl.style.animation='none';void annEl.offsetWidth;annEl.style.animation='annFade .6s ease';ai=(ai+1)%MSGS.length;}
+rot();setInterval(rot,3800);
+
+/* ===== HEADER + REVEAL + COUNT ===== */
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30),{passive:true});
+function countUp(el){const target=+el.dataset.target,dec=el.dataset.dec==='1',suf=el.dataset.suf||'';const t0=performance.now(),dur=1700;
+  function step(now){let p=Math.min((now-t0)/dur,1);p=1-Math.pow(1-p,3);const v=target*p;el.textContent=(dec?v.toFixed(1):Math.round(v).toLocaleString())+suf;if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+}
+if('IntersectionObserver' in window){
+  document.documentElement.classList.add('reveal-on');
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const cio=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){countUp(en.target);cio.unobserve(en.target);}}),{threshold:.5});
+  document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+}
+</script>
+</body>
+</html>
