@@ -32,6 +32,7 @@
     .then(function (data) {
       if (!data) return;
       window.__SITE_CONTENT__ = data;
+        console.log('CMS loaded:', data);
       render();
     })
     .catch(function () {});
