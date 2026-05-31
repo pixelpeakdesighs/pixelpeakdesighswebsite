@@ -20,12 +20,12 @@
   }
 
   function render() {
-    applyAll('data-cms', function (el, v) { el.textContent = v; });
-    applyAll('data-cms-html', function (el, v) { el.innerHTML = v; });
-    applyAll('data-cms-src', function (el, v) { el.setAttribute('src', v); });
-    applyAll('data-cms-href', function (el, v) { el.setAttribute('href', v); });
-    applyAll('data-cms-bg', function (el, v) { el.style.backgroundImage = "url('" + v + "')"; });
-  }
+  applyAll('data-cms', null, function (el, v) { el.textContent = v; });
+  applyAll('data-cms-html', null, function (el, v) { el.innerHTML = v; });
+  applyAll('data-cms-src', null, function (el, v) { el.setAttribute('src', v); });
+  applyAll('data-cms-href', null, function (el, v) { el.setAttribute('href', v); });
+  applyAll('data-cms-bg', null, function (el, v) { el.style.backgroundImage = "url('" + v + "')"; });
+}
 
   fetch(SRC, { cache: 'no-store' })
     .then(function (r) { return r.ok ? r.json() : null; })
